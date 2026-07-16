@@ -1,8 +1,8 @@
 # Claude Plugin Eval Harness
 
-A generic, local evaluation framework for Claude Code plugins.
+A generic, local evaluation framework for [Claude Code plugins](https://code.claude.com/docs/en/plugins-reference).
 
-This repository is both a working sample marketplace and a template you can copy into your own plugin marketplace. It includes one intentionally tiny `hello-world` plugin, shared eval tooling, example suites, synthetic fixtures, report generation, and baseline regression comparison.
+Claude plugins are distributed via a [marketplace](https://code.claude.com/docs/en/plugin-marketplaces). This repository is both a working sample marketplace and a template you can copy into your own plugin marketplace. It includes one intentionally tiny `hello-world` plugin, shared eval tooling, example suites, synthetic fixtures, report generation, and baseline regression comparison.
 
 The design is deliberately local-first:
 
