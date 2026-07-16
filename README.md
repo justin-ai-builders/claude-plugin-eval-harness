@@ -1,12 +1,12 @@
 # Claude Plugin Eval Harness
 
-A generic, manual evaluation framework for Claude Code plugins.
+A generic, local evaluation framework for Claude Code plugins.
 
 This repository is both a working sample marketplace and a template you can copy into your own plugin marketplace. It includes one intentionally tiny `hello-world` plugin, shared eval tooling, example suites, synthetic fixtures, report generation, and baseline regression comparison.
 
 The design is deliberately local-first:
 
-- evals run manually against a real logged-in Claude Code CLI;
+- evals run locally against a real logged-in Claude Code CLI;
 - ordinary plugin behavior is graded with deterministic assertions;
 - optional model judges can add qualitative feedback;
 - fixture workspaces make file effects testable;
@@ -157,11 +157,11 @@ Then invoke:
 /hello-world:hello Ada Lovelace
 ```
 
-## Why this is not CI
+## Local runs today, CI later
 
-The included workflow is intentionally manual. Live plugin evals require credentials, consume model usage, can be nondeterministic, and execute plugin-provided prompts and tools. Those tradeoffs deserve an explicit decision rather than a default GitHub Actions job.
+The harness is automated, but it currently runs locally rather than through CI. Local execution can use the developer's existing logged-in Claude Code session and Claude plan, without requiring separate CI credentials.
 
-If you later add CI, preserve the same validation-before-spend behavior, narrow tool permissions, keep secrets away from untrusted pull requests, and make model/cost changes visible.
+CI instrumentation has not been added yet. A future workflow can invoke the same suite runner and reporting tools once the project chooses how Claude Code should authenticate in that environment. It should preserve the existing validation-before-spend behavior and narrow tool permissions.
 
 ## Safety and privacy
 

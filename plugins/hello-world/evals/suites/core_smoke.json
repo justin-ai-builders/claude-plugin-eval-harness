@@ -1,6 +1,6 @@
 {
   "name": "hello_world_core_smoke",
-  "description": "Must-pass mechanical contracts for the hello-world plugin. Run manually with tools/evals/run.sh hello-world.",
+  "description": "Must-pass mechanical contracts for the hello-world plugin. Run locally with tools/evals/run.sh hello-world.",
   "defaults": {
     "workspace_fixture": "../fixtures/workspace",
     "allowed_tools": ["Read"]

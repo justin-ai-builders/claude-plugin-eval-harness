@@ -6,7 +6,7 @@ Deterministic assertions gate. A committed baseline plus `compare.py` catches re
 
 Evals are opt-in. Add a suite when a plugin has behavioral contracts worth protecting: a skill must read particular files, ask before writing, degrade gracefully when a dependency is missing, refuse unsafe work, or produce a specific artifact.
 
-This framework is deliberately manual. It does not install or run evals in CI.
+This framework currently runs locally. CI instrumentation has not been added yet.
 
 ## Layout
 
@@ -252,7 +252,7 @@ After a deliberate behavior change, review it and commit a new baseline in the s
 
 ## Suggested pull-request protocol
 
-1. Run the appropriate suite manually.
+1. Run the appropriate suite locally.
 2. Read the full JSON and Markdown reports, including response excerpts.
 3. Compare the JSON result against the committed baseline.
 4. Fix real regressions or inaccurate assertions.
@@ -266,4 +266,4 @@ gh pr comment <pr-number> \
   --body-file plugins/<plugin>/evals/out/core_smoke_latest.md
 ```
 
-No GitHub Actions workflow is included. Teams can add automation later if they accept the credential, cost, nondeterminism, and untrusted-plugin execution implications.
+No GitHub Actions workflow is included yet. The same suite runner and report outputs can be instrumented in CI later; local execution can use each contributor's existing logged-in Claude Code session and Claude plan.

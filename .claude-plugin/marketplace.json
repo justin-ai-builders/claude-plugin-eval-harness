@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "claude-plugin-eval-harness",
-  "description": "A sample Claude Code plugin marketplace with a reusable manual evaluation harness.",
+  "description": "A sample Claude Code plugin marketplace with a reusable local evaluation harness.",
   "owner": {
     "name": "Justin Norris"
   },
