@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-plugin-eval-harness",
+  "description": "A sample Claude Code plugin marketplace with a reusable manual evaluation harness.",
+  "owner": {
+    "name": "Justin Norris"
+  },
+  "plugins": [
+    {
+      "name": "hello-world",
+      "description": "A minimal greeting plugin used to demonstrate behavioral evals.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Justin Norris"
+      },
+      "source": "./plugins/hello-world",
+      "category": "development",
+      "homepage": "https://github.com/justin-ai-builders/claude-plugin-eval-harness"
+    }
+  ]
+}

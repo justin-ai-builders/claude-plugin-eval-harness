@@ -1,0 +1,42 @@
+{
+  "name": "hello_world_core_smoke",
+  "description": "Must-pass mechanical contracts for the hello-world plugin. Run manually with tools/evals/run.sh hello-world.",
+  "defaults": {
+    "workspace_fixture": "../fixtures/workspace",
+    "allowed_tools": ["Read"]
+  },
+  "tests": [
+    {
+      "id": "smoke_liveness",
+      "description": "Claude CLI, authentication, and --plugin-dir boot successfully.",
+      "tags": ["smoke"],
+      "input": "Respond with exactly: OK",
+      "assertions": [
+        { "type": "contains", "value": "OK" },
+        { "type": "max_words", "value": 8 }
+      ]
+    },
+    {
+      "id": "greets_named_person",
+      "description": "The skill preserves the full supplied name and returns only the documented greeting.",
+      "tags": ["core", "greeting"],
+      "input": "/hello-world:hello Ada Lovelace",
+      "assertions": [
+        { "type": "regex", "value": "^Hello, Ada Lovelace!\\s*$" },
+        { "type": "max_words", "value": 4 },
+        { "type": "file_unchanged", "path": "README.md" }
+      ]
+    },
+    {
+      "id": "greets_world_by_default",
+      "description": "The skill uses world when no name is supplied.",
+      "tags": ["core", "greeting"],
+      "input": "/hello-world:hello",
+      "assertions": [
+        { "type": "regex", "value": "^Hello, world!\\s*$" },
+        { "type": "max_words", "value": 3 },
+        { "type": "file_unchanged", "path": "README.md" }
+      ]
+    }
+  ]
+}

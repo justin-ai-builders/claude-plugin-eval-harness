@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "timestamp_utc": "2026-07-15T21:21:06.788121+00:00",
+    "adapter": "claude",
+    "plugin_dir": "plugins/hello-world",
+    "suite_path": "plugins/hello-world/evals/suites/core_smoke.json",
+    "suite_name": "hello_world_core_smoke",
+    "filters": {
+      "include_tags": [],
+      "exclude_tags": [],
+      "max_tests": null
+    },
+    "tests_defined": 3,
+    "tests_selected": 3,
+    "cost_note": "cost_usd figures exclude llm_judge calls (invoked separately)"
+  },
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped_dependency": 0,
+    "advisory_warnings": 0,
+    "duration_ms": 11971,
+    "total_cost_usd": 0.1748
+  },
+  "results": [
+    {
+      "test_id": "smoke_liveness",
+      "description": "Claude CLI, authentication, and --plugin-dir boot successfully.",
+      "tags": [
+        "smoke"
+      ],
+      "passed": true,
+      "skipped_dependency": false,
+      "duration_ms": 5146,
+      "failures": [],
+      "warnings": [],
+      "response": "OK",
+      "conversation_id": "a0d3488c-5805-46b2-bf8b-c01c6cd5de83",
+      "error": null,
+      "cost_usd": 0.056883,
+      "workspace": null
+    },
+    {
+      "test_id": "greets_named_person",
+      "description": "The skill preserves the full supplied name and returns only the documented greeting.",
+      "tags": [
+        "core",
+        "greeting"
+      ],
+      "passed": true,
+      "skipped_dependency": false,
+      "duration_ms": 3603,
+      "failures": [],
+      "warnings": [],
+      "response": "Hello, Ada Lovelace!",
+      "conversation_id": "3f8febbf-5f9d-40a7-8a6d-ac646a63935d",
+      "error": null,
+      "cost_usd": 0.059223,
+      "workspace": null
+    },
+    {
+      "test_id": "greets_world_by_default",
+      "description": "The skill uses world when no name is supplied.",
+      "tags": [
+        "core",
+        "greeting"
+      ],
+      "passed": true,
+      "skipped_dependency": false,
+      "duration_ms": 3214,
+      "failures": [],
+      "warnings": [],
+      "response": "Hello, world!",
+      "conversation_id": "83310075-d0cf-4ebe-ab05-5f3bf57fdbd2",
+      "error": null,
+      "cost_usd": 0.058703000000000005,
+      "workspace": null
+    }
+  ]
+}

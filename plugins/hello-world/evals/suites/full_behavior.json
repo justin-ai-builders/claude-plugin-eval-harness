@@ -1,0 +1,22 @@
+{
+  "name": "hello_world_full_behavior",
+  "description": "A broader example suite showing an advisory qualitative judge alongside mechanical gating assertions.",
+  "defaults": {
+    "workspace_fixture": "../fixtures/workspace",
+    "allowed_tools": ["Read"]
+  },
+  "tests": [
+    {
+      "id": "greeting_is_concise_and_direct",
+      "description": "The greeting is mechanically correct; the advisory judge demonstrates qualitative evaluation without gating this suite.",
+      "tags": ["quality", "greeting"],
+      "input": "/hello-world:hello Grace Hopper",
+      "assertions": [
+        { "type": "contains", "value": "Hello, Grace Hopper!" },
+        { "type": "max_words", "value": 4 },
+        { "type": "file_unchanged", "path": "README.md" },
+        { "type": "llm_judge", "advisory": true, "rubric": "The response is a direct one-line greeting to Grace Hopper with no preamble, explanation, or extra advice." }
+      ]
+    }
+  ]
+}

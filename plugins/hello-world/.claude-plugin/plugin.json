@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "hello-world",
+  "displayName": "Hello World",
+  "version": "0.1.0",
+  "description": "A minimal greeting plugin used to demonstrate behavioral evals.",
+  "author": {
+    "name": "Justin Norris"
+  },
+  "homepage": "https://github.com/justin-ai-builders/claude-plugin-eval-harness",
+  "repository": "https://github.com/justin-ai-builders/claude-plugin-eval-harness",
+  "license": "MIT",
+  "keywords": ["example", "evals", "testing"]
+}

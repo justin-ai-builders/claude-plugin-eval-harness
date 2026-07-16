@@ -1,0 +1,73 @@
+{
+  "name": "REPLACE_plugin_name_core_smoke",
+  "description": "Must-pass fundamentals for REPLACE-plugin-name. Derive tests from the plugin's use cases — one test per behavioral contract, phrased the way a real user would ask. Keep this suite mechanical: llm_judge only as advisory. See docs/plugin-evals.md for the schema, assertion reference, and authoring checklist.",
+  "defaults": {
+    "workspace_fixture": "../fixtures/workspace",
+    "allowed_tools": ["REPLACE: derive from the skills' allowed-tools frontmatter, e.g.", "Read", "Write", "Edit", "Glob", "Grep", "Bash(ls:*)", "Bash(date:*)"]
+  },
+  "tests": [
+    {
+      "id": "smoke_liveness",
+      "description": "Cheapest possible check that the CLI, auth, and --plugin-dir boot at all. Keep as-is.",
+      "tags": ["smoke"],
+      "input": "Respond with exactly: OK",
+      "assertions": [
+        { "type": "contains", "value": "OK" },
+        { "type": "max_words", "value": 8 }
+      ]
+    },
+    {
+      "id": "REPLACE_core_behavior",
+      "description": "REPLACE: one core use case. Invoke the skill exactly as a user would.",
+      "tags": ["core"],
+      "input": "/REPLACE-plugin-name:REPLACE-skill-name REPLACE: a realistic argument",
+      "assertions": [
+        { "type": "contains_any", "values": ["REPLACE marker 1", "REPLACE marker 2"] },
+        { "type": "not_regex", "value": "(?i)REPLACE forbidden phrase" },
+        { "type": "llm_judge", "advisory": true, "rubric": "REPLACE: qualitative bar, e.g. 'response is a usable draft, not meta-commentary about drafting'" }
+      ]
+    },
+    {
+      "id": "REPLACE_file_effect",
+      "description": "REPLACE: a skill that writes files. Assertions run against the temp copy of the fixture workspace after the turn. Pitfall: if the skill asks for confirmation before writing, a single-turn file_exists is a guaranteed false negative — use a two-turn shared conversation like the pair below.",
+      "tags": ["core"],
+      "input": "/REPLACE-plugin-name:REPLACE-skill-name REPLACE argument",
+      "assertions": [
+        { "type": "file_exists", "path": "REPLACE/expected-output.md" },
+        { "type": "file_contains", "path": "REPLACE/expected-output.md", "value": "REPLACE expected content" },
+        { "type": "file_unchanged", "path": "REPLACE/must-not-touch/*.md" }
+      ]
+    },
+    {
+      "id": "REPLACE_guardrail",
+      "description": "REPLACE: something the plugin must refuse or degrade gracefully on. The default isolation already hides all MCP servers, which is how you test 'dependency unavailable' behavior.",
+      "tags": ["guardrail"],
+      "input": "REPLACE: input that must trigger the guardrail",
+      "assertions": [
+        { "type": "regex", "value": "(?i)REPLACE expected refusal or degrade marker" },
+        { "type": "not_regex", "value": "(?i)REPLACE fabrication marker that must not appear" }
+      ]
+    },
+    {
+      "id": "REPLACE_multiturn_step1",
+      "description": "REPLACE (optional): first turn of a flow. Turns sharing 'shared:<group>' resume one Claude Code session, in one shared workspace copy, in file order. If this turn fails, later turns are skipped.",
+      "tags": ["core"],
+      "conversation": "shared:flow1",
+      "input": "REPLACE: step 1 input",
+      "assertions": [
+        { "type": "regex", "value": "(?i)REPLACE: proof the skill asked before acting" },
+        { "type": "file_not_exists", "path": "REPLACE/not-yet-written.md" }
+      ]
+    },
+    {
+      "id": "REPLACE_multiturn_step2",
+      "description": "REPLACE (optional): the confirmation turn.",
+      "tags": ["core"],
+      "conversation": "shared:flow1",
+      "input": "Yes — go ahead exactly as shown.",
+      "assertions": [
+        { "type": "file_exists", "path": "REPLACE/not-yet-written.md" }
+      ]
+    }
+  ]
+}
